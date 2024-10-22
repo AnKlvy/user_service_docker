@@ -21,9 +21,9 @@ ENV PYTHONUNBUFFERED=1
 # Копируем проект
 COPY . .
 
-RUN chmod +x entrypoint.sh  # Делаем скрипт исполняемым
-
-# Укажите команду запуска
-ENTRYPOINT ["./entrypoint.sh"]
+#RUN chmod +x entrypoint.sh  # Делаем скрипт исполняемым
+#
+## Укажите команду запуска
+#ENTRYPOINT ["./entrypoint.sh"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
 

@@ -1,5 +1,9 @@
-<h1>{{ user.full_name }}</h1>
-<p>Email: {{ user.email }}</p>
-<a href="{% url 'user_update' user.pk %}">Edit</a>
-<a href="{% url 'user_delete' user.pk %}">Delete</a>
-<a href="{% url 'user_list' %}">Back to list</a>
+<h1>{{ view.object.pk|yesno:"Редактировать пользователя,Создать пользователя" }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>
+
+<a href="{% url 'user_list' %}">Назад к списку пользователей</a>
