@@ -34,3 +34,17 @@ class UserDeleteView(DeleteView):
     model = User
     template_name = 'user_confirm_delete.html'
     success_url = reverse_lazy('user_list')
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import UserSerializer
+from django.shortcuts import get_object_or_404
+
+class UserDetailAPI(APIView):
+    def get(self, request, pk):
+        user = get_object_or_404(User, pk=pk)
+        serializer = UserSerializer(user)
+        print(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
